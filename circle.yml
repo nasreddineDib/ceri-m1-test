@@ -1,14 +1,14 @@
 machine:
-    java:
-        version:
-            oraclejdk8
-    dependencies:
-        override:
-            - mvn clean
-    general:
-        branches:
-            only:
-                - master
-    test:
-        override:
-            - mvn test
+  java:
+    version:
+      oraclejdk8
+  dependencies:
+    override:
+      - mvn clean
+  general:
+    branches:
+      only:
+        - master
+  test:
+    override:
+      - mvn test
