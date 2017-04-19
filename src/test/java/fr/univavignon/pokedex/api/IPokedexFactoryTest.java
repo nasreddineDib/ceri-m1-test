@@ -7,7 +7,11 @@ import org.junit.Test;
 import org.mockito.*;
 import org.mockito.Mockito;
 
-
+/**
+ * 
+ * @author Dib Nasreddine
+ *
+ */
 public class IPokedexFactoryTest {
 
 	@Mock private IPokedexFactory pokedexFactory;
@@ -25,7 +29,5 @@ public class IPokedexFactoryTest {
 	public void createPokedexTest() {
 		assertEquals(pokedexFactory.createPokedex(pokemonMetadataProvider, pokemonFactory), pokedex);
 	}
-
-	
 
 }
