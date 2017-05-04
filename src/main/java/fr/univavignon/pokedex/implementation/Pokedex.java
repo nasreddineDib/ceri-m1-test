@@ -23,14 +23,12 @@ public class Pokedex implements IPokedex, Serializable{
 
 	private static final long serialVersionUID = 3173396585518515389L;
 	private Map<Integer, Pokemon> pokemons;
-	/**
-	 * @return the pokemonsMap
-	 */
-	public Map<Integer, Pokemon> getPokemonsMap() {return pokemons;}
-	public void setPokemons(Map<Integer, Pokemon> pokemons) {this.pokemons = pokemons;}
-
 	private IPokemonMetadataProvider pmdtp;
 	private IPokemonFactory pokemonFactory;
+
+	
+	public Map<Integer, Pokemon> getPokemonsMap() {return pokemons;}
+	public void setPokemons(Map<Integer, Pokemon> pokemons) {this.pokemons = pokemons;}
 
 	public IPokemonMetadataProvider getPmdtp() {return pmdtp;}
 	public void setPmdtp(IPokemonMetadataProvider pmdtp) {this.pmdtp = pmdtp;}

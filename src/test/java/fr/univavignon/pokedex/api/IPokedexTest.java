@@ -22,8 +22,10 @@ public class IPokedexTest {
 	@Mock private IPokedex pokedex;
 	private int index;
 	private int nbrPokemon;
-
-
+	private List<Pokemon> pokemons = new ArrayList<Pokemon>(151);
+	private Pokemon pokemon1 = new Pokemon(0,"Bulbizarre",126,126,90,613,64,4000,4,56);
+	private Pokemon pokemon2 = new Pokemon(133,"Aquali",186,168,260,2729,202,5000,4,100);
+	
 	public IPokedex getPokedex() {return pokedex;}
 	public void setPokedex(IPokedex pokedex) {this.pokedex = pokedex;}
 
@@ -41,11 +43,6 @@ public class IPokedexTest {
 
 	public Pokemon getPokemon2() {return pokemon2;}
 	public void setPokemon2(Pokemon pokemon2) {this.pokemon2 = pokemon2;}
-
-
-	private List<Pokemon> pokemons = new ArrayList<Pokemon>(151);
-	private Pokemon pokemon1 = new Pokemon(0,"Bulbizarre",126,126,90,613,64,4000,4,56);
-	private Pokemon pokemon2 = new Pokemon(133,"Aquali",186,168,260,2729,202,5000,4,100);
 
 	@Before
 	public void setUp() throws PokedexException{
