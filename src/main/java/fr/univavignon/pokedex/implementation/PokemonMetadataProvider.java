@@ -89,5 +89,4 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider, Serial
 				data.getInt("BaseStamina"));
 		return pokemonMetadata;
 	}
-
 }
