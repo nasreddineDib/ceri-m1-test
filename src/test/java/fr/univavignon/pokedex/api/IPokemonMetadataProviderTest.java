@@ -58,18 +58,20 @@ public class IPokemonMetadataProviderTest {
 	@Test
 	public void getPokemonMetadataSuccessTest() throws PokedexException{
 		//Test with Bulbizarre
-		assertEquals(pokemonMetadataProvider.getPokemonMetadata(0).getIndex(), pokemonMeta1.getIndex());
-		assertEquals(pokemonMetadataProvider.getPokemonMetadata(0).getName(), pokemonMeta1.getName());
-		assertEquals(pokemonMetadataProvider.getPokemonMetadata(0).getAttack(), pokemonMeta1.getAttack());
-		assertEquals(pokemonMetadataProvider.getPokemonMetadata(0).getDefense(), pokemonMeta1.getDefense());
-		assertEquals(pokemonMetadataProvider.getPokemonMetadata(0).getStamina(), pokemonMeta1.getStamina());
+		PokemonMetadata bulbasor = pokemonMetadataProvider.getPokemonMetadata(0);
+		assertEquals(bulbasor.getIndex(), pokemonMeta1.getIndex());
+		assertEquals(bulbasor.getName(), pokemonMeta1.getName());
+		assertEquals(bulbasor.getAttack(), pokemonMeta1.getAttack());
+		assertEquals(bulbasor.getDefense(), pokemonMeta1.getDefense());
+		assertEquals(bulbasor.getStamina(), pokemonMeta1.getStamina());
 
 		//Test with Jolteon
-		assertEquals(pokemonMetadataProvider.getPokemonMetadata(134).getIndex(), pokemonMeta2.getIndex());
-		assertEquals(pokemonMetadataProvider.getPokemonMetadata(134).getName(), pokemonMeta2.getName());
-		assertEquals(pokemonMetadataProvider.getPokemonMetadata(134).getAttack(), pokemonMeta2.getAttack());
-		assertEquals(pokemonMetadataProvider.getPokemonMetadata(134).getDefense(), pokemonMeta2.getDefense());
-		assertEquals(pokemonMetadataProvider.getPokemonMetadata(134).getStamina(), pokemonMeta2.getStamina());
+		PokemonMetadata jolteon = pokemonMetadataProvider.getPokemonMetadata(134);
+		assertEquals(jolteon.getIndex(), pokemonMeta2.getIndex());
+		assertEquals(jolteon.getName(), pokemonMeta2.getName());
+		assertEquals(jolteon.getAttack(), pokemonMeta2.getAttack());
+		assertEquals(jolteon.getDefense(), pokemonMeta2.getDefense());
+		assertEquals(jolteon.getStamina(), pokemonMeta2.getStamina());
 	}
 
 	/**
