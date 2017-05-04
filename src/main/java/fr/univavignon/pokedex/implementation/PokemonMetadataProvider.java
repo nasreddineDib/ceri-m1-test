@@ -1,6 +1,4 @@
 package fr.univavignon.pokedex.implementation;
-
-import java.io.IOException;
 /**
  * @author Dib Nasreddine
  *
@@ -9,7 +7,7 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.io.IOException;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,18 +27,27 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider, Serial
 	 * Retourne le singleton
 	 * @return PokemonMetadataProvider
 	 */
-	public static synchronized PokemonMetadataProvider getInstance() throws JSONException, IOException{
-		return INSTANCE == null?new PokemonMetadataProvider():INSTANCE;
+	public static synchronized PokemonMetadataProvider getInstance() throws PokedexException{
+		try {
+			return INSTANCE == null?new PokemonMetadataProvider():INSTANCE;
+		} catch (JSONException e) {
+			throw new PokedexException(e.getMessage());
+		}
 	}
 
 	/**
 	 * Contructeur privee qui initialise la liste et la rempli a partir du fichier json
+	 * @throws PokedexException 
 	 * @throws JSONException
 	 * @throws IOException
 	 */
-	private PokemonMetadataProvider() throws JSONException, IOException{
+	private PokemonMetadataProvider() throws PokedexException{
 		this.PokemonMetadataList = new ArrayList<PokemonMetadata>();
-		this.fillPokemonMetadataList();
+		try {
+			this.fillPokemonMetadataList();
+		} catch (JSONException | PokedexException | IOException e) {
+			throw new  PokedexException(e.getMessage());
+		}
 	}
 
 	/**
@@ -48,7 +55,7 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider, Serial
 	 * @throws JSONException
 	 * @throws IOException
 	 */
-	private void fillPokemonMetadataList() throws JSONException, IOException {
+	private void fillPokemonMetadataList() throws PokedexException, JSONException, IOException {
 		URL url = new URL(URL_STRING);
 		JSONArray jsonArray = new JSONArray(IOUtils.toString(url));
 		for(int i = 0; i < jsonArray.length(); i++){
@@ -66,11 +73,10 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider, Serial
 	 */
 	@Override
 	public PokemonMetadata getPokemonMetadata(int index) throws PokedexException {
-		PokemonMetadata result = null;
 		if(index < 0 || index > 150)
 			throw new PokedexException("L'index doit etre compris entre 0 et 150");
 
-		return result;
+		return this.PokemonMetadataList.get(index);
 	}
 
 	/**
