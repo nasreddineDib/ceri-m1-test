@@ -86,7 +86,7 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider, Serial
 	 * @throws JSONException
 	 */
 	public PokemonMetadata jsonToPMDT(JSONObject data) throws JSONException{
-		if(data == null) throw new JSONException("data can't be null");
+		if(data == null) throw new JSONException("data ne peut etre null");
 		PokemonMetadata pokemonMetadata;
 		pokemonMetadata = new PokemonMetadata(data.getInt("PkMn")-1,
 				data.getString("Identifier"), 
