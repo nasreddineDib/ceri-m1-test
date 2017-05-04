@@ -76,8 +76,8 @@ public class Pokedex implements IPokedex, Serializable{
 
 	@Override
 	public int addPokemon(Pokemon pokemon) {
-		this.getPokemonsMap().put(pokemon.getIndex(), pokemon);
-		return (pokemon.getIndex());
+		this.getPokemonsMap().put(this.getPokemons().size(), pokemon);
+		return (this.getPokemons().size()-1);
 	}
 
 	@Override
