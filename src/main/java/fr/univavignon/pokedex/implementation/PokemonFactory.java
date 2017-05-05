@@ -86,7 +86,7 @@ public class PokemonFactory implements IPokemonFactory, Serializable {
 		}
 		String iv = webDriver.findElement(By.xpath("//*[@id=\"possibleCombinationsStringmax\"]//b")).getText();
 		webDriver.quit();
-		return new Pokemon(index,name,attack,defense,stamina,cp,hp,dust,candy,Double.parseDouble(iv)/100);
+		return new Pokemon(index,name,attack,defense,stamina,cp,hp,dust,candy,Math.round(Float.parseFloat(iv.replace("%", ""))));
 	}
 
 }

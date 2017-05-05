@@ -44,7 +44,7 @@ public class IPokemonFactoryTest {
 		assertEquals(pokemon1.getCp(), p.getCp());
 		assertEquals(pokemon1.getHp(), p.getHp());
 		assertEquals(pokemon1.getDust(), p.getDust());
-		assertEquals(pokemon1.getIv(), p.getIv(),0);		
+		assertEquals(pokemon1.getIv(), p.getIv(),0.001);		
 	}
 	
 	@Test
@@ -59,6 +59,6 @@ public class IPokemonFactoryTest {
 		assertEquals(pokemon2.getCp(), p.getCp());
 		assertEquals(pokemon2.getHp(), p.getHp());
 		assertEquals(pokemon2.getDust(), p.getDust());
-		assertEquals(pokemon2.getIv(), p.getIv(),0);		
+		assertEquals(pokemon2.getIv(), p.getIv(),0.001);		
 	}
 }
