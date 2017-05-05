@@ -13,8 +13,8 @@ import org.mockito.*;
 public class IPokemonMetadataProviderTest {
 
 	@Mock private IPokemonMetadataProvider pokemonMetadataProvider;
-	private PokemonMetadata pokemonMetadata1 = new PokemonMetadata(0, "Bulbasaur", 126, 126, 90);
-	private PokemonMetadata pokemonMetadata2 = new PokemonMetadata(134, "Jolteon", 192, 174, 130);
+	@Mock private PokemonMetadata pokemonMetadata1;
+	@Mock private PokemonMetadata pokemonMetadata2;
 
 
 	public void setIpokemonMetadataProviderMock(IPokemonMetadataProvider pokemonMetadataProvider) {
@@ -36,7 +36,8 @@ public class IPokemonMetadataProviderTest {
 	@Before
 	public void setUp() throws PokedexException{
 		MockitoAnnotations.initMocks(this);
-
+		pokemonMetadata1 = new PokemonMetadata(0, "Bulbasaur", 126, 126, 90);
+		pokemonMetadata2 = new PokemonMetadata(134, "Jolteon", 192, 174, 130);
 		//Valid values
 		Mockito.when(pokemonMetadataProvider.getPokemonMetadata(0)).thenReturn(pokemonMetadata1);
 		Mockito.when(pokemonMetadataProvider.getPokemonMetadata(134)).thenReturn(pokemonMetadata2);
