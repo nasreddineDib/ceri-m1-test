@@ -75,16 +75,15 @@ public class PokemonFactory implements IPokemonFactory, Serializable {
 		webDriver.get(url);
 
 		webDriver.findElement(By.xpath("//*[@id=\"search_pokemon_name\"]")).sendKeys(name);
-		webDriver.findElement(By.xpath("//*[@class=\"tt-dataset tt-dataset-0\"]")).click();
-		webDriver.findElement(By.xpath("//*[@id=\"search_cp\"]")).sendKeys(Integer.toString(cp));
-		webDriver.findElement(By.xpath("//*[@id=\"search_hp\"]")).sendKeys(Integer.toString(hp));
-		webDriver.findElement(By.xpath("//*[@id=\"search_dust\"]")).sendKeys(Integer.toString(dust));
+		webDriver.findElement(By.xpath("/html/body/div/div[3]/div[1]/span/div/div/div")).click();
+		webDriver.findElement(By.xpath("//*[@id=\"search_cp\"]")).sendKeys(String.valueOf(cp));
+		webDriver.findElement(By.xpath("//*[@id=\"search_hp\"]")).sendKeys(String.valueOf(hp));
+		webDriver.findElement(By.xpath("//*[@id=\"search_dust\"]")).sendKeys(String.valueOf(dust));
 		webDriver.findElement(By.xpath("//*[@id=\"calculatebtn\"]")).click();
-		String res = webDriver.findElement(By.xpath("//*[@id=\"possiblecombis\"]/tbody/tr[1]/td[5]")).getText();
-		res = res.split("%")[0];
-		Double iv = Double.parseDouble(res)/100;
+		String res = webDriver.findElement(By.xpath("//*[@id=\"possibleCombinationsStringmax\"]//b")).getText();
+				
 		webDriver.quit();
-		return new Pokemon(index,name,attack,defense,stamina,cp,hp,dust,candy,iv);
+		return new Pokemon(index,name,attack,defense,stamina,cp,hp,dust,candy,Math.round(Float.parseFloat(res.replace("%", ""))));
 	}
 
 }

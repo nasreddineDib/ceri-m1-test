@@ -16,13 +16,13 @@ public class IPokemonFactoryTest {
 	private IPokemonFactory pokemonFactory;
 	private Pokemon pokemon1;
 	private Pokemon pokemon2;
-	
+
 	public IPokemonFactory getPokemonFactory() {return pokemonFactory;}
 	public void setPokemonFactory(IPokemonFactory pokemonFactory) {this.pokemonFactory = pokemonFactory;	}
-	
+
 	public void setPokemon1(Pokemon pokemon1) {this.pokemon1 = pokemon1;}
 	public void setPokemon2(Pokemon pokemon2) {this.pokemon2 = pokemon2;}
-	
+
 	@Before
 	public void setUp() throws PokedexException {
 		MockitoAnnotations.initMocks(this);
@@ -34,31 +34,32 @@ public class IPokemonFactoryTest {
 
 	@Test
 	public void testPokemon1() {
-		Pokemon p = getPokemonFactory().createPokemon(0, 613, 64, 4000, 4);
-		assertEquals(pokemon1.getIndex(), p.getIndex());
-		assertEquals(pokemon1.getName(), p.getName());
-		assertEquals(pokemon1.getAttack(), p.getAttack());
-		assertEquals(pokemon1.getDefense(), p.getDefense());
-		assertEquals(pokemon1.getStamina(), p.getStamina());
-		assertEquals(pokemon1.getCandy(), p.getCandy());
-		assertEquals(pokemon1.getCp(), p.getCp());
-		assertEquals(pokemon1.getHp(), p.getHp());
-		assertEquals(pokemon1.getDust(), p.getDust());
-		assertEquals(pokemon1.getIv(), p.getIv(),0.001);		
+		Pokemon pokemon1 = pokemonFactory.createPokemon(0, 613, 64, 4000, 4);
+		assertEquals("Bulbasaur", pokemon1.getName());
+		assertEquals(0, pokemon1.getIndex());
+		assertEquals(126, pokemon1.getAttack());
+		assertEquals(126, pokemon1.getDefense());
+		assertEquals(90, pokemon1.getStamina());
+		assertEquals(613, pokemon1.getCp());
+		assertEquals(64, pokemon1.getHp());
+		assertEquals(4000, pokemon1.getDust());
+		assertEquals(4, pokemon1.getCandy());
+		assertEquals(56, pokemon1.getIv(), 0.001);
 	}
-	
+
 	@Test
 	public void testPokemon2() {
-		Pokemon p = getPokemonFactory().createPokemon(133, 1984, 172, 3500, 4);
-		assertEquals(pokemon2.getIndex(), p.getIndex());
-		assertEquals(pokemon2.getName(), p.getName());
-		assertEquals(pokemon2.getAttack(), p.getAttack());
-		assertEquals(pokemon2.getDefense(), p.getDefense());
-		assertEquals(pokemon2.getStamina(), p.getStamina());
-		assertEquals(pokemon2.getCandy(), p.getCandy());
-		assertEquals(pokemon2.getCp(), p.getCp());
-		assertEquals(pokemon2.getHp(), p.getHp());
-		assertEquals(pokemon2.getDust(), p.getDust());
-		assertEquals(pokemon2.getIv(), p.getIv(),0.001);		
+		Pokemon pokemon2 = pokemonFactory.createPokemon(133, 1984, 172, 3500, 4);
+		assertEquals("Vaporeon", pokemon2.getName());
+		assertEquals(133, pokemon2.getIndex());
+		assertEquals(186, pokemon2.getAttack());
+		assertEquals(168, pokemon2.getDefense());
+		assertEquals(260, pokemon2.getStamina());
+		assertEquals(1984, pokemon2.getCp());
+		assertEquals(172, pokemon2.getHp());
+		assertEquals(3500, pokemon2.getDust());
+		assertEquals(4, pokemon2.getCandy());
+		assertEquals(69, pokemon2.getIv(), 0.001);
+
 	}
 }
