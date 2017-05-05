@@ -16,9 +16,6 @@ import fr.univavignon.pokedex.api.PokemonMetadata;
  */
 public class PokemonFactory implements IPokemonFactory, Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 21528211181680756L;
 	private static PokemonFactory INSTANCE;
 
@@ -30,7 +27,6 @@ public class PokemonFactory implements IPokemonFactory, Serializable {
 
 	@Override
 	public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
-
 		PokemonMetadataProvider pmdtp;
 		PokemonMetadata pmdt;
 		try {
