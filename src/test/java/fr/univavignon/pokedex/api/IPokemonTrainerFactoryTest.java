@@ -26,6 +26,7 @@ public class IPokemonTrainerFactoryTest {
 	public void setPokemonTrainerFactory(IPokemonTrainerFactory pokemonTrainerFactory) {this.pokemonTrainerFactory = pokemonTrainerFactory;}
 	public IPokedexFactory getPokedexFactory() {return pokedexFactory;}
 	public void setPokedexFactory(IPokedexFactory pokedexFactory) {this.pokedexFactory = pokedexFactory;}
+	public void setPokedex(IPokedex pokedex) {this.pokedex = pokedex;}
 
 	@Before
 	public void setUp() throws PokedexException {
@@ -47,10 +48,6 @@ public class IPokemonTrainerFactoryTest {
 
 	@Test
 	public void createTrainerTest() {
-		assertEquals(spark, pokemonTrainerFactory.createTrainer("Spark", Team.INSTINCT,  getPokedexFactory()));
-		assertEquals(blanche, pokemonTrainerFactory.createTrainer("Blanche", Team.MYSTIC,  getPokedexFactory()));
-		assertEquals(candela, pokemonTrainerFactory.createTrainer("Candela", Team.VALOR,  getPokedexFactory()));
-
 		//Team INSTINCT
 		PokemonTrainer sparkTrainer = getPokemonTrainerFactory().createTrainer("Spark", Team.INSTINCT, getPokedexFactory());
 		assertEquals("Spark", sparkTrainer.getName());

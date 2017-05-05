@@ -1,11 +1,15 @@
 package fr.univavignon.pokedex.api;
 
+import java.io.Serializable;
+
 /**
  * Pokemon POJO.
  * 
  * @author fv
  */
-public final class Pokemon extends PokemonMetadata {
+public final class Pokemon extends PokemonMetadata implements Serializable {
+
+	private static final long serialVersionUID = -4897962408598130256L;
 
 	/** Combat Point of the pokemon. **/
 	private final int cp;

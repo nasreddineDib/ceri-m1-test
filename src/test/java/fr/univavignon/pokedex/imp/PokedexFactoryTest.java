@@ -15,7 +15,7 @@ import fr.univavignon.pokedex.implementation.PokedexFactory;
 public class PokedexFactoryTest extends IPokedexFactoryTest {
 	@Override
 	public void setUp() throws PokedexException {
-		IPokedexFactory factory = new PokedexFactory();
+		IPokedexFactory factory = PokedexFactory.getInstance();
 		this.setPokedexFactory(factory);
 	}
 }

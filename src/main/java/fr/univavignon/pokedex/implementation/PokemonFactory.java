@@ -4,6 +4,7 @@
 package fr.univavignon.pokedex.implementation;
 
 import java.io.Serializable;
+
 import fr.univavignon.pokedex.api.IPokemonFactory;
 import fr.univavignon.pokedex.api.PokedexException;
 import fr.univavignon.pokedex.api.Pokemon;
@@ -15,7 +16,10 @@ import fr.univavignon.pokedex.api.PokemonMetadata;
  */
 public class PokemonFactory implements IPokemonFactory, Serializable {
 
-	private static final long serialVersionUID = 8657680827072673708L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 21528211181680756L;
 	private static PokemonFactory INSTANCE;
 
 	private PokemonFactory() {}
@@ -23,7 +27,7 @@ public class PokemonFactory implements IPokemonFactory, Serializable {
 	public static synchronized PokemonFactory getInstance() {
 		return INSTANCE == null?new PokemonFactory():INSTANCE;
 	}
-	
+
 	@Override
 	public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
 
