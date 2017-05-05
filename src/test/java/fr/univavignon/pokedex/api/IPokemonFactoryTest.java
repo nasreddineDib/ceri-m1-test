@@ -30,6 +30,7 @@ public class IPokemonFactoryTest {
 		pokemon2 = new Pokemon(133, "Vaporeon", 186, 168, 260, 1984, 172, 3500, 4, 69);
 		Mockito.when(getPokemonFactory().createPokemon(0, 613, 64, 4000, 4)).thenReturn(pokemon1);
 		Mockito.when(getPokemonFactory().createPokemon(133, 1984, 172, 3500, 4)).thenReturn(pokemon2);
+		Mockito.when(pokemonFactory.createPokemon(-1, 1984, 172, 3500, 4)).thenReturn(null);
 	}
 
 	@Test
@@ -61,5 +62,9 @@ public class IPokemonFactoryTest {
 		assertEquals(4, pokemon2.getCandy());
 		assertEquals(69, pokemon2.getIv(), 0.001);
 
+	}
+
+	public void negativeIndexTest() throws PokedexException {
+		assertNull(pokemonFactory.createPokemon(-1, 1984, 172, 3500, 4));
 	}
 }
