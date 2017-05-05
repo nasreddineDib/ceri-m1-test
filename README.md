@@ -6,3 +6,16 @@
 
 * Status CircleCI : [![CircleCI](https://circleci.com/gh/nasreddineDib/ceri-m1-test/tree/master.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/nasreddineDib/ceri-m1-test/tree/master)
 
+## Le Packages :
+
+Le projet est constitué de 4 packages majeurs dans le dossier "src/"
+* **main.java.fr.univavignon.pokedex.api**
+Package qui regroupe toutes les classes fournie pour le TP
+
+
+* **main.java.fr.univavignon.pokedex.implementation**
+Package qui regroupe l'implementation des classes
+* **test.java.fr.univavignon.pokedex.api**
+Package qui regroupe les tests avec des mocks
+* **test.java.fr.univavignon.pokedex.imp**
+Package qui regroupe l'implementation des tests construits au préalable avec Mockito
