@@ -1,5 +1,9 @@
 package fr.univavignon.pokedex.api;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
@@ -19,10 +23,10 @@ public class PokemonTrainer implements Serializable{
 
 	/** Trainer team. **/
 	private final Team team;
-	
+
 	/** Trainer pokedex. **/
 	private final IPokedex pokedex;
-	
+
 	/**
 	 * Default constructor.
 	 * 
@@ -35,7 +39,7 @@ public class PokemonTrainer implements Serializable{
 		this.team = team;
 		this.pokedex = pokedex;
 	}
-	
+
 	/** Name getter. **/
 	public String getName() {
 		return name;
@@ -45,10 +49,20 @@ public class PokemonTrainer implements Serializable{
 	public Team getTeam() {
 		return team;
 	}
-	
+
 	/** Pokedex getter. **/
 	public IPokedex getPokedex() {
 		return pokedex;
 	}
-	
+
+	public void updateSerializedOBJ() {
+		final String FILE_PATH = "."+File.separator+"src"+File.separator+"serialized"+File.separator+name+".ser";
+		File serializedTrainersFile = new File(FILE_PATH);
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(serializedTrainersFile));
+			oos.writeObject(this) ;
+			oos.close();
+		} catch (IOException e) { e.printStackTrace(); }
+	}
+
 }

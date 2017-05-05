@@ -1,6 +1,10 @@
 package fr.univavignon.pokedex.api;
 
 import static org.junit.Assert.*;
+
+import java.io.File;
+
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.*;
@@ -30,6 +34,7 @@ public class IPokemonTrainerFactoryTest {
 
 	@Before
 	public void setUp() throws PokedexException {
+		Pokemon pokemon = new Pokemon(0, "Bulbasaur", 126, 126, 90, 613, 64, 4000, 4, 56);
 		MockitoAnnotations.initMocks(this);
 
 		//On initialise le leader de la INSTINCT
@@ -43,6 +48,9 @@ public class IPokemonTrainerFactoryTest {
 		//On initialise le leader de la VALOR
 		setCandela(new PokemonTrainer("Candela", Team.VALOR,  pokedex));
 		Mockito.when(pokemonTrainerFactory.createTrainer("Candela", Team.VALOR,  getPokedexFactory())).thenReturn(candela);
+		
+		Mockito.when(pokedex.size()).thenReturn(1);
+		Mockito.when(pokedex.getPokemon(0)).thenReturn(pokemon);
 	}
 
 
@@ -65,6 +73,41 @@ public class IPokemonTrainerFactoryTest {
 		assertEquals("Candela", candelaTrainer.getName());
 		assertEquals(0, candelaTrainer.getPokedex().getPokemons().size());
 		assertEquals(Team.VALOR, candelaTrainer.getTeam());
+	}
+
+	@Test 
+	public void testPokemonTrainer() throws PokedexException {
+		Pokemon pokemon = new Pokemon(0, "Bulbasaur", 126, 126, 90, 613, 64, 4000, 4, 56);
+
+		PokemonTrainer pokemonTrainer = getPokemonTrainerFactory().createTrainer("Spark", Team.INSTINCT, getPokedexFactory());
+		assertEquals("Spark", pokemonTrainer.getName());
+		assertEquals(Team.INSTINCT, pokemonTrainer.getTeam());
+		int index = pokemonTrainer.getPokedex().addPokemon(pokemon);
+		assertEquals(1, pokemonTrainer.getPokedex().size());
+
+		PokemonTrainer pokemonTrainer2 = getPokemonTrainerFactory().createTrainer("Spark", Team.INSTINCT, getPokedexFactory());
+		assertEquals("Spark", pokemonTrainer2.getName());
+		assertEquals(Team.INSTINCT, pokemonTrainer2.getTeam());
+		assertEquals(1, pokemonTrainer2.getPokedex().size());
+		assertEquals(pokemon.getName(), pokemonTrainer2.getPokedex().getPokemon(index).getName());
+		assertEquals(pokemon.getIndex(), pokemonTrainer2.getPokedex().getPokemon(index).getIndex());
+
+	}
+
+	@After
+	public void clear(){
+		try{
+			final String file1 = "."+File.separator+"src"+File.separator+"serialized"+File.separator+"Spark.ser";
+			final String file2 = "."+File.separator+"src"+File.separator+"serialized"+File.separator+"Spark.ser";
+			final String file3 = "."+File.separator+"src"+File.separator+"serialized"+File.separator+"Spark.ser";
+			File trainer2 = new File(file1);
+			trainer2.delete();
+			trainer2 = new File(file2);
+			trainer2.delete();
+			trainer2 = new File(file3);
+			trainer2.delete();
+		}catch(Exception e){}
+
 	}
 
 }

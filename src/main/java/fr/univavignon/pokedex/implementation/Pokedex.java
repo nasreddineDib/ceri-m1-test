@@ -7,25 +7,25 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import fr.univavignon.pokedex.api.IPokedex;
 import fr.univavignon.pokedex.api.IPokemonFactory;
 import fr.univavignon.pokedex.api.IPokemonMetadataProvider;
 import fr.univavignon.pokedex.api.PokedexException;
 import fr.univavignon.pokedex.api.Pokemon;
 import fr.univavignon.pokedex.api.PokemonMetadata;
+import fr.univavignon.pokedex.api.PokemonTrainer;
 
 /**
  * @author Dib Nasreddine
  *
  */
-public class Pokedex implements IPokedex, Serializable{
+public class Pokedex  implements IPokedex, Serializable{
 
 	private static final long serialVersionUID = 3173396585518515389L;
 	private Map<Integer, Pokemon> pokemons;
 	private IPokemonMetadataProvider pmdtp;
 	private IPokemonFactory pokemonFactory;
-
+	private PokemonTrainer pokemonTrainer;
 	
 	public Map<Integer, Pokemon> getPokemonsMap() {return pokemons;}
 	public void setPokemons(Map<Integer, Pokemon> pokemons) {this.pokemons = pokemons;}
@@ -36,6 +36,9 @@ public class Pokedex implements IPokedex, Serializable{
 	public IPokemonFactory getPokemonFactory() {return pokemonFactory;}
 	public void setPokemonFactory(IPokemonFactory pokemonFactory) {this.pokemonFactory = pokemonFactory;}
 
+	@Override
+	public void setPokemonTrainer(PokemonTrainer pokemonTrainer) {this.pokemonTrainer = pokemonTrainer;}
+	
 	/**
 	 * Constructeur par defaut
 	 * @throws PokedexException 
@@ -75,6 +78,7 @@ public class Pokedex implements IPokedex, Serializable{
 	@Override
 	public int addPokemon(Pokemon pokemon) {
 		this.getPokemonsMap().put(this.getPokemons().size(), pokemon);
+		this.notifyPokemonTrainer();
 		return (this.getPokemons().size()-1);
 	}
 
@@ -95,5 +99,10 @@ public class Pokedex implements IPokedex, Serializable{
 		List<Pokemon> pokemons = new ArrayList<Pokemon>(this.getPokemonsMap().values());
 		Collections.sort(pokemons, order);
 		return pokemons;
+	}
+	
+	@Override
+	public void notifyPokemonTrainer() {
+		if(pokemonTrainer != null) pokemonTrainer.updateSerializedOBJ();		
 	}
 }
