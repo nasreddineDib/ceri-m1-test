@@ -32,23 +32,14 @@ public class PokemonFactory implements IPokemonFactory, Serializable {
 
 	@Override
 	public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
-		PokemonMetadataProvider pmdtp;
-		PokemonMetadata pmdt;
 		try {
-			pmdtp = PokemonMetadataProvider.getInstance();		
-			pmdt = pmdtp.getPokemonMetadata(index);
+			PokemonMetadataProvider pmdtp = PokemonMetadataProvider.getInstance();		
+			PokemonMetadata pmdt = pmdtp.getPokemonMetadata(index);
+			return calculIV(index, pmdt.getName(),pmdt.getAttack(), pmdt.getDefense(),pmdt.getStamina(), cp,hp,dust,candy);
 		} catch (PokedexException e) {
 			return null;
 		}
-		return calculIV(index, 
-				pmdt.getName(),
-				pmdt.getAttack(), 
-				pmdt.getDefense(),
-				pmdt.getStamina(), 
-				cp,
-				hp,
-				dust,
-				candy);
+		
 	}
 
 	/**

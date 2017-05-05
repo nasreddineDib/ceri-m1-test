@@ -23,8 +23,8 @@ public class IPokedexTest {
 	private int index;
 	private int nbrPokemon;
 	private List<Pokemon> pokemons = new ArrayList<Pokemon>(151);
-	private Pokemon pokemon1 = new Pokemon(0,"Bulbasaur",126,126,90,613,64,4000,4,56);
-	private Pokemon pokemon2 = new Pokemon(134, "Jolteon", 192, 174, 130, 613, 64, 4000, 0, 56);
+	private Pokemon pokemon1;
+	private Pokemon pokemon2;
 
 	public IPokedex getPokedex() {return pokedex;}
 	public void setPokedex(IPokedex pokedex) {this.pokedex = pokedex;}
@@ -47,6 +47,8 @@ public class IPokedexTest {
 	@Before
 	public void setUp() throws PokedexException{
 		MockitoAnnotations.initMocks(this);
+		pokemon1 = new Pokemon(0,"Bulbasaur",126,126,90,613,64,4000,4,56);
+		pokemon2 = new Pokemon(134, "Jolteon", 192, 174, 130, 613, 64, 4000, 0, 56);
 		index = 0;
 		nbrPokemon = 0;
 
@@ -88,7 +90,7 @@ public class IPokedexTest {
 		ArrayList<Pokemon> byIndex = new ArrayList<Pokemon>();
 		byIndex.add(this.getPokedex().getPokemon(0));
 		byIndex.add(this.getPokedex().getPokemon(1));
-		
+
 		//On les ajoute par order croissant de nom
 		List<Pokemon> byName = new ArrayList<Pokemon>();
 		byName.add(this.getPokedex().getPokemon(0));
@@ -104,6 +106,9 @@ public class IPokedexTest {
 		Mockito.when(this.getPokedex().getPokemons(PokemonComparators.NAME)).thenReturn(byName);
 		Mockito.when(this.getPokedex().getPokemons(PokemonComparators.INDEX)).thenReturn(byIndex);
 		Mockito.when(this.getPokedex().getPokemons(PokemonComparators.CP)).thenReturn(byCp);
+		
+		//Mock pour tester la methode createPokemon
+		Mockito.when(this.getPokedex().createPokemon(0, 613, 64, 4000, 4)).thenReturn(pokemon1);
 
 	}
 
@@ -179,6 +184,18 @@ public class IPokedexTest {
 		assertEquals(byName.size(), byName.size());
 		assertEquals(byCp.size(), byCp.size());
 		assertEquals(this.getPokemon1().getName(), byName.get(0).getName());
+	}
+
+	@Test 
+	public void testCreatePokemonWithPokedex() {
+		Pokemon pokemon = this.getPokedex().createPokemon(0, 613, 64, 4000, 4);
+		assertEquals(pokemon1.getAttack(), pokemon.getAttack());
+		assertEquals(pokemon1.getDefense(), pokemon.getDefense());
+		assertEquals(pokemon1.getIndex(), pokemon.getIndex());
+		assertEquals(pokemon1.getName(), pokemon.getName());
+		assertEquals(pokemon1.getCandy(), pokemon.getCandy());
+		assertEquals(pokemon1.getCp(), pokemon.getCp());
+		assertEquals(pokemon1.getName(), pokemon.getName());
 	}
 
 	public int mockAddModifier(Pokemon pokemon){
