@@ -75,7 +75,7 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider, Serial
 	public PokemonMetadata getPokemonMetadata(int index) throws PokedexException {
 		if(index < 0 || index > 150)
 			throw new PokedexException("L'index doit etre compris entre 0 et 150");
-
+		
 		return this.PokemonMetadataList.get(index);
 	}
 
