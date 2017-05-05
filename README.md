@@ -19,3 +19,6 @@ Package qui regroupe l'implementation des classes
 Package qui regroupe les tests avec des mocks
 * **test.java.fr.univavignon.pokedex.imp**
 Package qui regroupe l'implementation des tests construits au préalable avec Mockito
+
+J'ai effectuer la recherche de IV avec Selenium
+J'ai mis en place la serialisation pour le pokemonTrainer
