@@ -27,9 +27,9 @@ public class IPokemonFactoryTest {
 	public void setUp() throws PokedexException {
 		MockitoAnnotations.initMocks(this);
 		pokemon1 = new Pokemon(0, "Bulbasaur", 126, 126, 90, 613, 64, 4000, 4, 56);
-		pokemon2 = new Pokemon(134, "Jolteon", 192, 174, 130, 613, 64, 4000, 0, 56);
+		pokemon2 = new Pokemon(133, "Vaporeon", 186, 168, 260, 1984, 172, 3500, 4, 69);
 		Mockito.when(getPokemonFactory().createPokemon(0, 613, 64, 4000, 4)).thenReturn(pokemon1);
-		Mockito.when(getPokemonFactory().createPokemon(134, 613, 64, 4000, 0)).thenReturn(pokemon2);
+		Mockito.when(getPokemonFactory().createPokemon(133, 1984, 172, 3500, 4)).thenReturn(pokemon2);
 	}
 
 	@Test
@@ -49,7 +49,7 @@ public class IPokemonFactoryTest {
 	
 	@Test
 	public void testPokemon2() {
-		Pokemon p = getPokemonFactory().createPokemon(134, 613, 64, 4000, 0);
+		Pokemon p = getPokemonFactory().createPokemon(133, 1984, 172, 3500, 4);
 		assertEquals(pokemon2.getIndex(), p.getIndex());
 		assertEquals(pokemon2.getName(), p.getName());
 		assertEquals(pokemon2.getAttack(), p.getAttack());
