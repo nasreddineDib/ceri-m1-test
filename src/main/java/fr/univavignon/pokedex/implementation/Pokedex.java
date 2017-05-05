@@ -40,16 +40,6 @@ public class Pokedex  implements IPokedex, Serializable{
 	public void setPokemonTrainer(PokemonTrainer pokemonTrainer) {this.pokemonTrainer = pokemonTrainer;}
 	
 	/**
-	 * Constructeur par defaut
-	 * @throws PokedexException 
-	 */
-	public Pokedex() throws PokedexException{
-		this.setPokemons(new HashMap<Integer, Pokemon>());
-		this.setPmdtp(PokemonMetadataProvider.getInstance());
-		this.setPokemonFactory(PokemonFactory.getInstance());
-	}
-
-	/**
 	 * Constructeur avec aruments
 	 * @param pokemonFactory
 	 * @param pokemonMetadataProvider
