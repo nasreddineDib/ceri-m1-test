@@ -40,7 +40,7 @@ public final class Pokemon extends PokemonMetadata implements Serializable {
 	 * @param candy Required candy for upgrading this pokemon.
 	 * @param iv IV perfection percentage.
 	 */
-	public Pokemon(
+	public Pokemon(//NOPMD
 			final int index,
 			final String name,
 			final int attack,
