@@ -24,10 +24,10 @@ public class IPokemonFactoryTest {
 	public void setPokemon2(Pokemon pokemon2) {this.pokemon2 = pokemon2;}
 	
 	@Before
-	public void setUp(){
+	public void setUp() throws PokedexException {
+		MockitoAnnotations.initMocks(this);
 		pokemon1 = new Pokemon(0, "Bulbasaur", 126, 126, 90, 613, 64, 4000, 4, 56);
 		pokemon2 = new Pokemon(134, "Jolteon", 192, 174, 130, 613, 64, 4000, 0, 56);
-		MockitoAnnotations.initMocks(this);
 		Mockito.when(getPokemonFactory().createPokemon(0, 613, 64, 4000, 4)).thenReturn(pokemon1);
 		Mockito.when(getPokemonFactory().createPokemon(134, 613, 64, 4000, 0)).thenReturn(pokemon2);
 	}
