@@ -17,14 +17,25 @@ public class IPokemonMetadataProviderTest {
 	@Mock private PokemonMetadata pokemonMetadata2;
 
 
+	/**
+	 * @param pokemonMetadataProvider
+	 */
 	public void setIpokemonMetadataProviderMock(IPokemonMetadataProvider pokemonMetadataProvider) {
 		this.pokemonMetadataProvider = pokemonMetadataProvider;
 	}
 
+	/**
+	 * 
+	 * @param pokemonMeta
+	 */
 	public void setPokemonMetadata1(PokemonMetadata pokemonMeta) {
 		this.pokemonMetadata1 = pokemonMeta;
 	}
 	
+	/**
+	 * 
+	 * @param pokemonMeta
+	 */
 	public void setPokemonMetadata2(PokemonMetadata pokemonMeta) {
 		this.pokemonMetadata2 = pokemonMeta;
 	}
