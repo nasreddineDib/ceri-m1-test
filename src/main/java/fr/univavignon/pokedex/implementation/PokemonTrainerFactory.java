@@ -37,37 +37,36 @@ public class PokemonTrainerFactory implements IPokemonTrainerFactory {
 		if(serializedTrainersFile.exists()){
 			return recupererTrainer(serializedTrainersFile);
 		}else{
-			try {
-				return creerTrainer(name, team, pokedexFactory, serializedTrainersFile);
-			} catch (PokedexException e) {
-				e.printStackTrace();
-				return null;
-			}
-
+			return creerTrainer(name, team, pokedexFactory, serializedTrainersFile);
 		}
 	}
 
 	/**
-	 * @return 
-	 * @throws PokedexException 
-	 * @throws IOException 
 	 * 
+	 * @param name
+	 * @param team
+	 * @param pokedexFactory
+	 * @param serializedTrainersFile
+	 * @return
 	 */
-	private PokemonTrainer creerTrainer(String name, Team team, IPokedexFactory pokedexFactory, File serializedTrainersFile) throws PokedexException {
-		PokemonTrainer trainer = new PokemonTrainer(name, team, pokedexFactory.createPokedex(PokemonMetadataProvider.getInstance(), PokemonFactory.getInstance()));
-		ObjectOutputStream oos;
+	private PokemonTrainer creerTrainer(String name, Team team, IPokedexFactory pokedexFactory, File serializedTrainersFile){
+		PokemonTrainer trainer = null;
 		try {
+			trainer = new PokemonTrainer(name, team, pokedexFactory.createPokedex(PokemonMetadataProvider.getInstance(), PokemonFactory.getInstance()));
+			ObjectOutputStream oos;
 			oos = new ObjectOutputStream(new FileOutputStream(serializedTrainersFile));
 			oos.writeObject(trainer) ;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}		
+			oos.close();
+		} catch (IOException | PokedexException e1) {}
+		
+		
 		return trainer;
 	}
 
 	/**
-	 * @return 
 	 * 
+	 * @param serializedTrainersFile
+	 * @return
 	 */
 	private PokemonTrainer recupererTrainer(final File serializedTrainersFile) {
 		ObjectInputStream objectInputStream;
@@ -76,11 +75,7 @@ public class PokemonTrainerFactory implements IPokemonTrainerFactory {
 			objectInputStream = new ObjectInputStream(new FileInputStream(serializedTrainersFile));
 			trainer =(PokemonTrainer)objectInputStream.readObject();
 			objectInputStream.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		} catch (ClassNotFoundException | IOException e) {} 
 		return trainer;
 	}
 
